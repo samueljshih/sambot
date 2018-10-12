@@ -1,0 +1,32 @@
+/* GENERAL STYLING */
+a {
+  color: white !important;
+}
+
+li {
+  list-style-type: none;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+}
+
+/* CLASS STYLING */
+.chatBox {
+  height: 400px;
+  width: 100%;
+  background-color: green;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.chatBoxHeader {
+  color: white;
+}
+
+.message {
+  font-size: 25px;
+  color: white;
+}

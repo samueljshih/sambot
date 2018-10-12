@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { sendMessage } from './chat';
+import Navbar from './components/Navbar';
+import ChatBox from './components/ChatBox';
 
 class App extends Component {
+  constructor(props) {
+    super();
+  }
   render() {
+    const { feed, sendMessage } = this.props;
+    var count = 0;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Navbar />
+        <ChatBox feed={feed} sendMessage={sendMessage} />
+        <input
+          className="form-control"
+          placeholder="Enter a message"
+          type="text"
+          onKeyDown={e =>
+            e.keyCode === 13 ? sendMessage(e.target.value) : null
+          }
+        />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { feed: state };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    sendMessage
+  }
+)(App);
